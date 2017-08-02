@@ -49,4 +49,37 @@ class AdminQdTestimonialsController extends ModuleAdminController {
         );
         parent::__construct();
    }
+   public function renderList()
+{
+    $this->addRowAction('edit');
+    $this->addRowAction('delete');
+    $this->addRowAction('details');
+    $this->bulk_actions = array(
+        'delete' => array(
+            'text' => $this->l('Delete selected'),
+            'confirm' => $this->l('Delete selected items?')
+        )
+    );
+    $this->fields_list = array(
+        'id_qdtestimonials' => array(
+            'title' => $this->l('Id')
+        ),
+        'qdtestimonials_author' => array(
+            'title' => $this->l('Author'),
+            'align' => 'center',
+            'width' => 25
+        ),
+        'qdtestimonials_content' => array(
+            'title' => $this->l('Contenu'),
+            'width' => 'auto',
+        ),
+        'qdtestimonials_date' => array(
+            'title' => $this->l('Date'),
+            'width' => 'auto',
+        ),
+    );
+    $lists = parent::renderList();
+    parent::initToolbar();
+    return $lists;
+}
 }
