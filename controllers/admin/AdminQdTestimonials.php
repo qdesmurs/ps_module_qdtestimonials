@@ -20,33 +20,33 @@ class AdminQdTestimonialsController extends ModuleAdminController {
                 'type' => 'date',
                 )
         );
-        // $this->fields_form = array(
-        //     'tinymce' => true,
-        //     'legend' => array(
-        //         'title' => $this->l('Post'),
-        //     ),
-        //     'input' => array(
-        //         array(
-        //         'label' => $this->l('Author'),
-        //         'type' => 'text',
-        //         'name' => 'qdtestimonials_author',
-        //         ),
-        //         array(
-        //         'label' => $this->l('Contenu'),
-        //         'type' => 'textarea',
-        //         'name' => 'qdtestimonials_content',
-        //         ),
-        //         array(
-        //         'label' => $this->l('Date'),
-        //         'type' => 'date',
-        //         'name' => 'qdtestimonials_date',
-        //         ),
-        //     ),
-        //     'submit' => array(
-        //         'title' => $this->l('Save'),
-        //         'class' => 'btn btn-default pull-right'
-        //     )
-        // );
+        $this->fields_form = array(
+            'tinymce' => true,
+            'legend' => array(
+                'title' => $this->l('Post'),
+            ),
+            'input' => array(
+                array(
+                'label' => $this->l('Author'),
+                'type' => 'text',
+                'name' => 'qdtestimonials_author',
+                ),
+                array(
+                'label' => $this->l('Contenu'),
+                'type' => 'textarea',
+                'name' => 'qdtestimonials_content',
+                ),
+                array(
+                'label' => $this->l('Date'),
+                'type' => 'date',
+                'name' => 'qdtestimonials_date',
+                ),
+            ),
+            'submit' => array(
+                'title' => $this->l('Save'),
+                'class' => 'btn btn-default pull-right'
+            )
+        );
         parent::__construct();
     }
 }
