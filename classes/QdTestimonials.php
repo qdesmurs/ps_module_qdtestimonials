@@ -23,10 +23,25 @@ class QdTestimonials extends Module{
         }
         if (!parent::install()
             || !Configuration::updateValue('QDTESTIMONIALS_NAME', 'hello world')
+            || !$this->installDb()
+            || !$this->installTab()
         ) {
             return false;
         }
         return true;
+    }
+    public function installTab()
+    {
+        $tab = new Tab();
+        $tab->active = 1;
+        $tab->class_name = 'AdminQdTestimonials';
+        $tab->name = array();
+        foreach (Language::getLanguages(true) as $lang) {
+            $tab->name[$lang['id_lang']] = 'Qd Testimonials';
+        }
+        $tab->id_parent = 0;
+        $tab->module = $this->name;
+        return $tab->add();
     }
     public function uninstall(){
         $tab = new Tab((int)Tab::getIdFromClassName('AdminQdTestimonials'));
@@ -39,5 +54,20 @@ class QdTestimonials extends Module{
         }
         return true;
     }
-
+    public  function installDb()
+    {
+        $sql = 'CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'qdtestimonials` (
+            `id_qdtestimonials` int(11) NOT NULL AUTO_INCREMENT,
+            `qdtestimonials_author` varchar(50) NOT NULL,
+            `qdtestimonials_content` varchar(200) NOT NULL,
+            `qdtestimonials_date` datetime NOT NULL,
+            PRIMARY KEY (`id_qdtestimonials`))';
+        return Db::getInstance()->execute($sql);
+    }
+    public function uninstallDb()
+    {
+      $sql = 'DROP TABLE '._DB_PREFIX_.'qdtestimonials';
+      DB::getInstance()->execute($sql);
+      return true;
+    }
 }
