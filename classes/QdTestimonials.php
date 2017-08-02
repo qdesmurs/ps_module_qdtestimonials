@@ -22,7 +22,6 @@ class QdTestimonials extends Module{
             Shop::setContext(Shop::CONTEXT_ALL);
         }
         if (!parent::install()
-            || !Configuration::updateValue('QDTESTIMONIALS_NAME', 'hello world')
             || !$this->installDb()
             || !$this->installTab()
         ) {
