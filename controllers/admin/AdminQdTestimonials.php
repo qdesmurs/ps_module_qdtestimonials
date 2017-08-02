@@ -1,11 +1,17 @@
 <?php
-class AdminQdTestimonialsController extends ModuleAdminController {
+class AdminQdTestimonialsController extends ModuleAdminController
+{
     public function __construct()
-   {
+    {
         $this->table = 'qdtestimonials';
         $this->className = 'QdPost';
         $this->bootstrap = true;
-        $this->bulk_actions = array('delete' => array('text' => $this->l('Delete selected'), 'confirm' => $this->l('Delete selected items?')));
+        $this->bulk_actions = array(
+            'delete' => array(
+                'text' => $this->l('Delete selected'),
+                'confirm' => $this->l('Delete selected items?')
+            )
+        );
         $this->context = Context::getContext();
 
         $this->fields_list = array(

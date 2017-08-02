@@ -1,7 +1,9 @@
 <?php
 
-class QdTestimonials extends Module{
-    public function __construct(){
+class QdTestimonials extends Module
+{
+    public function __construct()
+    {
         $this->name = $this->l('qdtestimonials');
         $this->tab = 'front_office_features';
         $this->version = '1.0.0';
@@ -13,8 +15,9 @@ class QdTestimonials extends Module{
         $this->displayName = $this->l('Testimonials');
         $this->description = $this->l('testi null');
         $this->confirmUninstall = $this->l('Are you sure you want to uninstall?');
-        if (!Configuration::get('QDTESTIMONIALS_NAME'))
-           $this->warning = $this->l('No name provided');
+        if (!Configuration::get('QDTESTIMONIALS_NAME')) {
+            $this->warning = $this->l('No name provided');
+        }
     }
     public function install()
     {
@@ -42,18 +45,19 @@ class QdTestimonials extends Module{
         $tab->module = $this->name;
         return $tab->add();
     }
-    public function uninstall(){
+    public function uninstall()
+    {
         $tab = new Tab((int)Tab::getIdFromClassName('AdminQdTestimonials'));
         $tab->delete();
         if (!parent::uninstall()
             || !Configuration::deleteByName('qdtestimonials_NAME')
             || !$this->uninstallDb()
-        ){
+        ) {
             return false;
         }
         return true;
     }
-    public  function installDb()
+    public function installDb()
     {
         $sql = 'CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'qdtestimonials` (
             `id_qdtestimonials` int(11) NOT NULL AUTO_INCREMENT,
@@ -65,8 +69,8 @@ class QdTestimonials extends Module{
     }
     public function uninstallDb()
     {
-      $sql = 'DROP TABLE '._DB_PREFIX_.'qdtestimonials';
-      DB::getInstance()->execute($sql);
-      return true;
+        $sql = 'DROP TABLE '._DB_PREFIX_.'qdtestimonials';
+        DB::getInstance()->execute($sql);
+        return true;
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
-class QdPost extends ObjectModel {
+class QdPost extends ObjectModel
+{
     public $id_qdtestimonials;
     public $qdtestimonials_date;
     public $qdtestimonials_author;
@@ -15,5 +16,3 @@ class QdPost extends ObjectModel {
         ),
     );
 }
-
-?>
